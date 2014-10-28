@@ -1,15 +1,40 @@
 
 void setup() {
-  size(625, 381);
-  PImage img = loadImage("AllDenominations.jpg");
+  size(259, 194);
+  PImage img = loadImage("dog.jpeg");
   image(img, 0, 0);
   loadPixels();
-  int pixel = pixels[0];
-  
-  
-  println("pixel="+pixel);
-  println("red="+red(pixel)+" green="+green(pixel)+" blue="+blue(pixel);
-  messUpColors();
+
+
+  reverseBrightness();
   updatePixels();
-//  save("AllDenominationsBW.jpg");
+  //  save("AllDenominationsBW.jpg");
+}
+
+void messUpColors() {
+  int i = 0;
+  for (int pxl : pixels) {
+    pixels[i++] = pxl * 3;
+  }
+}
+
+void swapRedandBlue() {
+  int i = 0;
+  for (int pxl : pixels) {
+    float r = red(pxl);
+    float b = blue(pxl);
+    int newColor = color(b, green(pxl), r);
+    pixels[i++] = newColor;
+  }
+}
+
+void reverseBrightness() {
+  int i = 0;
+  for (int pxl : pixels) {
+    float r = red(pxl);
+    float b = blue(pxl);
+    float g = green(pxl);
+    int newColor = color(255 - r, 255 - g, 255 - b);
+    pixels[i++] = newColor;
+  }
 }
